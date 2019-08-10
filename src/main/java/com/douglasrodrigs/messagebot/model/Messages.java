@@ -20,15 +20,15 @@ public class Messages {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        private Long conversationId;
+        private String conversationId;
 
         private LocalDateTime timestamp;
 
         @Column(name = "from_")
-        private Long from;
+        private String from;
 
         @Column(name = "to_")
-        private Long to;
+        private String to;
 
         private String text;
 }

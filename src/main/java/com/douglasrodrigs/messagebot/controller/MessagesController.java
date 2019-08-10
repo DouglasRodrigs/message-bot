@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -14,8 +15,8 @@ public class MessagesController {
     @Autowired
     private MessagesRepository repository;
 
-    @GetMapping(path = {"/{conversationId}"})
-    public List findAll(@PathVariable long conversationId){
+    @GetMapping
+    public List findAll(@RequestParam("conversationId") String conversationId){
         return repository.findByConversationId(conversationId);
     }
 
