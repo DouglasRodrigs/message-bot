@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mbot-mysql:
+    container_name: mbot-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: messagebot
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+
+  mbot-backend:
+    container_name: mbot-backend
+    image: maven:3.5-jdk-8
+    working_dir: /app
+    command: mvn clean spring-boot:run
+    volumes:
+      - .:/app
+      - ~/.m2:/root/.m2
+    ports:
+      - 8080:8080
+    depends_on:
+      - mbot-mysql
